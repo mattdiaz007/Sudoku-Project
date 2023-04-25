@@ -128,12 +128,18 @@ class Board:
 
     def update_board(self):
         #update the 2d board w/ the values in all cells
-        pass
+        for i in range[BOARD_SIZE]:
+            for j in range[BOARD_SIZE]:
+                self.board[i][j].value = self.board[i][j].temp_value
 
     def find_empty(self):
         # find an empty cell and return the row and col as a tuple (row,col)
         # is this needed? i don't know
-        pass
+        for col in range[BOARD_SIZE]:
+            for row in range[BOARD_SIZE]:
+                if self.board[row][col] == 0:
+                    return (row, col)
+        return None
 
     def check_board(self):
         # check to see that the sudoku board is solved completely
