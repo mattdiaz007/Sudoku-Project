@@ -7,7 +7,7 @@ class Cell:
         # constructor for the cell class
         # value will be a number 0-9
         # instance attributes set up in the constructor
-        self.value = value  
+        self.value = value
         self.row = row
         self.col = col
         self.screen = screen
@@ -70,4 +70,3 @@ class Cell:
 
 
 
-c
