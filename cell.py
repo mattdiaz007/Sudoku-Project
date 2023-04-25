@@ -3,7 +3,7 @@ from constants import *
 import pygame
 
 class Cell:
-    def __init__(self, value, row, col, screen):
+    def __init__(self, value, row, col, screen, is_original):
         # constructor for the cell class
         # value will be a number 0-9
         # instance attributes set up in the constructor
@@ -13,6 +13,7 @@ class Cell:
         self.screen = screen
         self.sketched_value = 0
         self.selected = False
+        self.is_OG = is_original
 
 
 
@@ -26,6 +27,10 @@ class Cell:
 
 
     def draw(self):
+        if self.is_OG:
+            cell_select_color = CELL_NOT_SELECTED
+        else:
+            cell_select_color = CELL_SELECTED
         if self.selected:
             #  pygame.draw.line will is a function to draw lines
                 #  1st parameter is screen
@@ -55,7 +60,7 @@ class Cell:
             # draw the number surface
             value_font = pygame.font.Font(None, 80)
             value_text = "" if self.value == 0 else str(self.value)  # Set 0 to no value
-            value_surf = value_font.render(str(value_text), False, NUM_COLOR)
+            value_surf = value_font.render(str(value_text), False, cell_select_color)
             x_pos = ((CELL_D * self.col) + (CELL_D * self.col + CELL_D)) / 2
             y_pos = ((CELL_D * self.row) + (CELL_D * self.row + CELL_D)) / 2
             value_rect = value_surf.get_rect(center=(x_pos, y_pos))
