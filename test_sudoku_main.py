@@ -25,7 +25,7 @@ def game_start(screen):
     screen.blit(title_surf, title_rect)
 
     game_diff_surf = game_diff_font.render("Pick Difficulty of Puzzle:", True, LINE_COLOR)
-    game_diff_rect = game_surf.get_rect(
+    game_diff_rect = game_diff_surf.get_rect(
         center=((WIDTH // 2),(HEIGHT // 2)))
     screen.blit(game_diff_surf, game_diff_rect)
 
