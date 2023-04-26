@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 from constants import *
 from board import Board
 
@@ -185,14 +185,37 @@ def main():
     select = False
 
     while True:
+        strike = 0
         # mouse click event loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
             # This if statement accounts for when the game is actively being played
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 x, y = event.pos
                 column, row = game_board.click(x, y)
+                
+                if Board.click(row, column) is True:
+                    Board.select(row, column)
+                    if event.type == pygame.KEYDOWN:
+                        event.unicode.isdigit():
+                        # Get the digit entered by the user
+                        digit = int(event.unicode)
+                        if sudoku_generator.is_valid(row, column, digit):
+                            Board.sketch(digit)
+                         
+                            if event.key == pygame.K_ENTER:
+                                Board.place_number(digit)
+                         else:
+                            print('Wrong!')
+                            strike += 1
+                            if strinke == 3:
+                                game_loss(screen)
+                Board.update_board()
+                if Board.is_full() is True:
+                    if Board.check_board() is True:
+                        game_won(screen)
             # I want to create a series of if statements that account for
             # the quitting and restarting
                 if reset_rect.collidepoint(x, y):
