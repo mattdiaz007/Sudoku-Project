@@ -183,6 +183,42 @@ def main():
     restart_rect = game_board.draw()
     exit_rect = game_board.draw()
     select = False
+    # I am not sure if anything in this loops makes sense but i tried
+     while not game_over:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_over = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if reset_rect.collidepoint(mouse_pos):
+                    game_board.reset()
+                    select = False
+                elif restart_rect.collidepoint(mouse_pos):
+                    difficulty = game_board.difficulty
+                    game_board = Board(WIDTH,HEIGHT,screen,difficulty)
+                    game_board.draw()
+                    reset_rect = game_board.reset_button_rect
+                    restart_rect = game_board.restart_button_rect
+                    exit_rect = game_board.exit_button_rect
+                    select = False
+                elif exit_rect.collidepoint(mouse_pos):
+                    game_over = True
+                else:
+                    if not select:
+                        select = game_board.select_cell(mouse_pos)
+                    else:
+                        game_board.input_number(mouse_pos)
+                        if game_board.game_won():
+                            game_over = True
+                        else:
+                            continue
+                 
+                        select = False
+        
+        # update screen
+        pygame.display.update()
+
+    pygame.quit()
 
     # needs more work, I am not understanding the implimentation of the other executables
     # will be looking at Professor Zhou's tic tac toe example again
