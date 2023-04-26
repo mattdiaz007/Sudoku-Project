@@ -184,6 +184,25 @@ def main():
     exit_rect = game_board.draw()
     select = False
 
+    while True:
+        # mouse click event loop
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            # This if statement accounts for when the game is actively being played
+            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+                x, y = event.pos
+                column, row = game_board.click(x, y)
+            # I want to create a series of if statements that account for
+            # the quitting and restarting
+                if reset_rect.collidepoint(x, y):
+                    game_board.reset_to_original()
+                    # need to look at my board.py file in order to see that im calling this correctly
+                if exit_rect.collidepoint(x, y):
+                    pygame.quit()
+                if restart_rect.collidepoint(x, y):
+                    main()
+
     # needs more work, I am not understanding the implimentation of the other executables
     # will be looking at Professor Zhou's tic tac toe example again
 
