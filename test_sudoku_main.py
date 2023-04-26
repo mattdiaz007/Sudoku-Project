@@ -29,10 +29,35 @@ def game_start(screen):
         center=((WIDTH // 2),(HEIGHT // 2)))
     screen.blit(game_surf, game_rect)
 
-    # define the surface of the button text
+    # define a new surface with the specified text rendered on it (creating an image of the text)
+    # then blit this text image onto another surface
+
     easy_text_surf = button_font.render('Easy', True, BUTTON_TEXT_COLOR)
     med_text_surf = button_font.render('Medium', True, BUTTON_TEXT_COLOR)
     hard_text_surf = button_font.render('Hard', True, BUTTON_TEXT_COLOR)
+
+    # define the button object as a surface, then use fill (fill surf w/ COLOR)
+    # blit the surface onto the game window
+
+    easy_button_surf = pygame.Surface(((easy_text_surf.get_size()[0]+30),(easy_text_surf.get_size()[1]+30)))
+    easy_button_surf.fill(LINE_COLOR)
+
+    # pygame.Surface.blit - letting us draw one image onto another
+    # 1st arg == source surface (text) to be drawn on this surface (button)
+    # 2nd arg == dest (pair of coordinates) to represent the position of upper left corner of the blit/rect
+
+    easy_button_surf.blit(easy_text_surf, (12,12))
+
+
+
+
+    #med_surf = pygame.Surface((), ())
+    #med_surf.fill(LINE_COLOR)
+
+
+    #hard_surf = pygame.Surface((), ())
+    #hard_surf.fill(LINE_COLOR)
+
 
 def game_loss(screen):
 
@@ -40,7 +65,7 @@ def game_loss(screen):
 def game_won(screen):
 
 def main():
-    
+
 
 
 
