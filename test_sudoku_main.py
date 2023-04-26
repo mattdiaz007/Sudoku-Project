@@ -24,10 +24,10 @@ def game_start(screen):
     # 1st arg is surface, 2nd arg is the rectangle above the location of the surface
     screen.blit(title_surf, title_rect)
 
-    game_surf = game_diff_font.render("Pick Difficulty of Puzzle:", True, LINE_COLOR)
-    game_rect = game_surf.get_rect(
+    game_diff_surf = game_diff_font.render("Pick Difficulty of Puzzle:", True, LINE_COLOR)
+    game_diff_rect = game_surf.get_rect(
         center=((WIDTH // 2),(HEIGHT // 2)))
-    screen.blit(game_surf, game_rect)
+    screen.blit(game_diff_surf, game_diff_rect)
 
     # define a new surface with the specified text rendered on it (creating an image of the text)
     # then blit this text image onto another surface
@@ -45,18 +45,16 @@ def game_start(screen):
     # pygame.Surface.blit - letting us draw one image onto another
     # 1st arg == source surface (text) to be drawn on this surface (button)
     # 2nd arg == dest (pair of coordinates) to represent the position of upper left corner of the blit/rect
-
     easy_button_surf.blit(easy_text_surf, (12,12))
 
+    med_button_surf = pygame.Surface(((med_text_surf.get_size()[0] + 30), (med_text_surf.get_size()[1] + 30)))
+    med_button_surf.fill(LINE_COLOR)
+    med_button_surf.blit(med_text_surf, (12, 12))
 
+    hard_button_surf = pygame.Surface(((hard_text_surf.get_size()[0] + 30), (hard_text_surf.get_size()[1] + 30)))
+    hard_button_surf.fill(LINE_COLOR)
+    hard_button_surf.blit(hard_text_surf, (12, 12))
 
-
-    #med_surf = pygame.Surface((), ())
-    #med_surf.fill(LINE_COLOR)
-
-
-    #hard_surf = pygame.Surface((), ())
-    #hard_surf.fill(LINE_COLOR)
 
 
 def game_loss(screen):
